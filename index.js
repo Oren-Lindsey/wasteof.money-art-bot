@@ -51,8 +51,6 @@ function uploadImage(urlData, callback) {
   if (urlData.primaryImage.length === 0) {
     if (urlData.primaryImageSmall.length === 0) {
       postWorkOfArt()
-      /*var response = {'img': '<p>(No image available)</p>'}
-      callback(response, urlData)*/
     } else {
       const options = {
         apiKey: process.env['api-keyy'],
