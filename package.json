@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "imgbb-uploader": "^1.3.5",
+    "wasteof-client": "^1.3.1"
+  }
+}
