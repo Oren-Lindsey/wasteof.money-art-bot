@@ -12,15 +12,20 @@ app.get('/', (req, res) => res.send(`this is a webserver to ensure replit doesn'
 
 app.listen(port, () => console.log(`Example app listening`));
 
+let wasteof = new WasteOfSession(username, pass)
+  wasteof.login()
+    .then(data => {
+      wasteof.setBio(`This is a bot that posts a random work of art from the Metropolitan Museum Of Art 4 times a day. @jeffalo please don't ban me`)
+    })
+
 async function postWorkOfArt() {
   await getRandomArt(handleArt);
 }
 function handleArt(imageData, museumData) {
-  const postData = `<b>${museumData.artistDisplayName}.</b> <b>${museumData.title}</b> <i>${museumData.medium}, ${museumData.objectDate}</i> <i>${museumData.culture}.</i> <p>${museumData.creditLine}. ${museumData.objectURL}</p> ${imageData.img}`
+  const postData = `<b>${museumData.artistDisplayName}.</b> <i><b>"${museumData.title}"</b></i> <i>${museumData.medium}, ${museumData.objectDate}</i> <i>${museumData.culture}.</i> <p>${museumData.creditLine}. ${museumData.objectURL}</p> ${imageData.img}`
   let wasteof = new WasteOfSession(username, pass)
   wasteof.login()
     .then(data => {
-      wasteof.setBio(`This is a bot that posts a random work of art from the Metropolitan Museum Of Art 4 times a day. @jeffalo please don't ban me`)
       wasteof.postAndLove(postData, null)
       console.log('posted successfully')
     })
@@ -45,8 +50,9 @@ function getRandomArt(callback) {
 function uploadImage(urlData, callback) {
   if (urlData.primaryImage.length === 0) {
     if (urlData.primaryImageSmall.length === 0) {
-      var response = {'img': '<p>(No image available)</p>'}
-      callback(response, urlData)
+      postWorkOfArt()
+      /*var response = {'img': '<p>(No image available)</p>'}
+      callback(response, urlData)*/
     } else {
       const options = {
         apiKey: process.env['api-keyy'],
