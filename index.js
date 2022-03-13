@@ -77,4 +77,4 @@ function uploadImage(urlData, callback) {
   }
 }
 postWorkOfArt()
-setInterval(postWorkOfArt, 21600000);
+setInterval(postWorkOfArt, 86400000);
